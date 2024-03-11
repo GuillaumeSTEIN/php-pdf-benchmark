@@ -1,13 +1,8 @@
-# articles-2-pdf-benchmark
+# php-pdf-benchmark
+
+This repository is a fork of [articles-2-pdf-benchmark](https://github.com/Kyotu-Technology/kyotu/tree/main/articles/2-pdf-benchmark)
 
 This repository contains the benchmark tests, results, and related files for comparing the performance of two PDF generation libraries: wkhtmltopdf and Puppeteer.
-
-## Test Environment
-The tests were conducted on a machine with the following specifications:
-
-- Linux Mint 20.3 Cinnamon
-- RAM: 30.6 GiB
-- CPU: AMD Ryzen 7 PRO 4750U with Radeon Graphics × 8
 
 ## Repository Structure
 
@@ -58,4 +53,4 @@ To run the benchmark tests, follow these steps:
 If you have suggestions, improvements, or other contributions, feel free to submit a pull request or open an issue.
 
 ## License
-This project is licensed under the MIT License.`
+This project is licensed under the MIT License.
