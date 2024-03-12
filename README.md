@@ -44,6 +44,8 @@ To run the benchmark tests, follow these steps:
     docker build -t js-wkhtmltopdf . --platform linux/amd64
     cd ../php-dompdf
     docker build -t php-dompdf . --platform linux/amd64
+    cd ../php-puppeteer
+    docker build -t php-puppeteer . --platform linux/amd64
     cd ..
     ```
 
@@ -53,6 +55,7 @@ To run the benchmark tests, follow these steps:
    docker run -dp 3000:3000 --name js-puppeteer js-puppeteer
    docker run -dp 3001:3000 --name js-wkhtmltopdf js-wkhtmltopdf
    docker run -dp 3002:80 --name php-dompdf php-dompdf
+   docker run -dp 3003:80 --name php-puppeteer php-puppeteer
    ```
 3. Gather the Docker stats using the `stats.sh` script.
    ```shell
@@ -65,8 +68,8 @@ To run the benchmark tests, follow these steps:
 5. Analyze the results and compare the performance of both libraries.
 6. cleanup
    ```shell
-   docker stop js-puppeteer js-wkhtmltopdf php-dompdf
-   docker rm js-puppeteer js-wkhtmltopdf php-dompdf
+   docker stop js-puppeteer js-wkhtmltopdf php-dompdf php-puppeteer
+   docker rm js-puppeteer js-wkhtmltopdf php-dompdf php-puppeteer
    rm docker_stats.txt
    ```
 
