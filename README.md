@@ -2,35 +2,7 @@
 
 This repository is a fork of [articles-2-pdf-benchmark](https://github.com/Kyotu-Technology/kyotu/tree/main/articles/2-pdf-benchmark)
 
-This repository contains the benchmark tests, results, and related files for comparing the performance of two PDF generation libraries: wkhtmltopdf and Puppeteer.
-
-## Repository Structure
-
-```bash
-articles-2-pdf-benchmark
-│
-├── k6
-│   ├── concurrent.js
-│   ├── loadtests.sh
-│   ├── sequential.js
-│   └── stats.sh
-│
-├── Dockerfile-puppeteer
-├── Dockerfile-wkhtmltopdf
-├── puppeteer.js
-├── puppeteer-package.json
-├── wkhtmltopdf.js
-└── wkhtmltopdf-package.json
-```
-
-
-### k6
-This folder contains the k6 load test scripts and related files:
-
-- `concurrent.js`: k6 load test script for concurrent requests.
-- `loadtests.sh`: Shell script to run k6 load tests.
-- `sequential.js`: k6 load test script for sequential requests.
-- `stats.sh`: Shell script to gather Docker stats.
+This repository contains the benchmark tests for comparing the performance of 3 PDF generation libraries: Dompdf, Puppeteer and Wkhtmltopdf.
 
 ## Usage
 To run the benchmark tests, follow these steps:
@@ -62,11 +34,11 @@ To run the benchmark tests, follow these steps:
    ```shell
    ./k6/loadtests.sh
    ```
-5. Analyze the results and compare the performance of both libraries.
+5. Analyze the results and compare the performance of the 3 libraries.
 6. cleanup
    ```shell
-   docker stop php-dompdf php-puppeteer
-   docker rm php-dompdf php-puppeteer
+   docker stop php-dompdf php-puppeteer php-wkhtmltopdf
+   docker rm php-dompdf php-puppeteer php-wkhtmltopdf
    rm docker_stats.txt
    ```
 
