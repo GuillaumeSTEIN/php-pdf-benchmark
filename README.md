@@ -42,6 +42,8 @@ To run the benchmark tests, follow these steps:
     docker build -t php-dompdf . --platform linux/amd64
     cd ../php-puppeteer
     docker build -t php-puppeteer . --platform linux/amd64
+    cd ../php-wkhtmltopdf
+    docker build -t php-wkhtmltopdf . --platform linux/amd64
     cd ..
     ```
 
@@ -50,6 +52,7 @@ To run the benchmark tests, follow these steps:
     ```shell
    docker run -dp 3000:80 --name php-dompdf php-dompdf
    docker run -dp 3001:80 --name php-puppeteer php-puppeteer
+   docker run -dp 3002:80 --name php-wkhtmltopdf php-wkhtmltopdf
    ```
 3. Gather the Docker stats using the `stats.sh` script.
    ```shell
