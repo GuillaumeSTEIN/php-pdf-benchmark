@@ -44,7 +44,18 @@ This folder contains the k6 load test scripts and related files:
 To run the benchmark tests, follow these steps:
 
 1. Build the Docker containers for Puppeteer and wkhtmltopdf using the respective Dockerfiles.
+
+    ```shell
+    docker build -f Dockerfile-puppeteer -t puppeteer . --platform linux/amd64
+    docker build -f Dockerfile-wkhtmltopdf -t wkhtmltopdf . --platform linux/amd64
+    ```
+
 2. Run the containers with PDF generation endpoints (`puppeteer.js` and `wkhtmltopdf.js`).
+    
+    ```shell
+   docker run -dp 127.0.0.1:3000:3000 puppeteer
+   docker run -dp 127.0.0.1:3001:3000 wkhtmltopdf
+   ```
 3. Run the k6 load tests using the `loadtests.sh` script.
 4. Gather the Docker stats using the `stats.sh` script.
 5. Analyze the results and compare the performance of both libraries.

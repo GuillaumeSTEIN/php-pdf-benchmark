@@ -1,5 +1,5 @@
 # Base image
-FROM node:18
+FROM node:20
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -10,14 +10,11 @@ RUN apt-get update && \
         libxcb1 \
         libxext6 \
         libxrender1 \
+        wkhtmltopdf \
         wget \
         xfonts-75dpi \
         xfonts-base \
     && rm -rf /var/lib/apt/lists/*
-
-RUN wget -q -O wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_amd64.deb && \
-    dpkg -i wkhtmltox.deb && \
-    rm wkhtmltox.deb
 
 
 # Create app directory
