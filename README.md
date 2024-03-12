@@ -46,18 +46,30 @@ To run the benchmark tests, follow these steps:
 1. Build the Docker containers for Puppeteer and wkhtmltopdf using the respective Dockerfiles.
 
     ```shell
-    docker build -f Dockerfile-puppeteer -t puppeteer . --platform linux/amd64
-    docker build -f Dockerfile-wkhtmltopdf -t wkhtmltopdf . --platform linux/amd64
+    cd puppeteer
+    docker build -t puppeteer . --platform linux/amd64
+    cd ../wkhtmltopdf
+    docker build -t wkhtmltopdf . --platform linux/amd64
+    cd ../dompdf
+    docker build -t dompdf . --platform linux/amd64
+    cd ..
     ```
 
 2. Run the containers with PDF generation endpoints (`puppeteer.js` and `wkhtmltopdf.js`).
     
     ```shell
-   docker run -dp 127.0.0.1:3000:3000 puppeteer
-   docker run -dp 127.0.0.1:3001:3000 wkhtmltopdf
+   docker run -dp 3000:3000 --name puppeteer puppeteer
+   docker run -dp 3001:3000 --name wkhtmltopdf wkhtmltopdf
+   docker run -dp 3002:80 --name dompdf dompdf
    ```
-3. Run the k6 load tests using the `loadtests.sh` script.
-4. Gather the Docker stats using the `stats.sh` script.
+3. Gather the Docker stats using the `stats.sh` script.
+   ```shell
+   ./k6/stats.sh
+   ```
+4. Run the k6 load tests using the `loadtests.sh` script.
+   ```shell
+   ./k6/loadtests.sh
+   ```
 5. Analyze the results and compare the performance of both libraries.
 
 ## Contributing
