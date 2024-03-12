@@ -26,7 +26,7 @@ RUN apt-get update; \
     zlib1g-dev \
     ;
 RUN docker-php-ext-install dom gd mbstring
-#RUN docker-php-ext-install opcache
+RUN docker-php-ext-install opcache
 
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
