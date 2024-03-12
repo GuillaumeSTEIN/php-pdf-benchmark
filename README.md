@@ -30,15 +30,7 @@ This folder contains the k6 load test scripts and related files:
 - `concurrent.js`: k6 load test script for concurrent requests.
 - `loadtests.sh`: Shell script to run k6 load tests.
 - `sequential.js`: k6 load test script for sequential requests.
-- `stats.sh`: Shell script to gather Docker stats. 
- 
-### Dockerfiles and scripts
-- `Dockerfile-puppeteer`: Dockerfile for creating a Puppeteer container.
-- `Dockerfile-wkhtmltopdf`: Dockerfile for creating a wkhtmltopdf container.
-- `puppeteer.js`: Puppeteer PDF generation script.
-- `puppeteer-package.json`: Package.json for Puppeteer script.
-- `wkhtmltopdf.js`: wkhtmltopdf PDF generation script.
-- `wkhtmltopdf-package.json`: Package.json for wkhtmltopdf script.
+- `stats.sh`: Shell script to gather Docker stats.
 
 ## Usage
 To run the benchmark tests, follow these steps:
@@ -46,21 +38,21 @@ To run the benchmark tests, follow these steps:
 1. Build the Docker containers for Puppeteer and wkhtmltopdf using the respective Dockerfiles.
 
     ```shell
-    cd puppeteer
-    docker build -t puppeteer . --platform linux/amd64
-    cd ../wkhtmltopdf
-    docker build -t wkhtmltopdf . --platform linux/amd64
-    cd ../dompdf
-    docker build -t dompdf . --platform linux/amd64
+    cd js-puppeteer
+    docker build -t js-puppeteer . --platform linux/amd64
+    cd ../js-wkhtmltopdf
+    docker build -t js-wkhtmltopdf . --platform linux/amd64
+    cd ../php-dompdf
+    docker build -t php-dompdf . --platform linux/amd64
     cd ..
     ```
 
 2. Run the containers with PDF generation endpoints (`puppeteer.js` and `wkhtmltopdf.js`).
     
     ```shell
-   docker run -dp 3000:3000 --name puppeteer puppeteer
-   docker run -dp 3001:3000 --name wkhtmltopdf wkhtmltopdf
-   docker run -dp 3002:80 --name dompdf dompdf
+   docker run -dp 3000:3000 --name js-puppeteer js-puppeteer
+   docker run -dp 3001:3000 --name js-wkhtmltopdf js-wkhtmltopdf
+   docker run -dp 3002:80 --name php-dompdf php-dompdf
    ```
 3. Gather the Docker stats using the `stats.sh` script.
    ```shell
@@ -71,6 +63,12 @@ To run the benchmark tests, follow these steps:
    ./k6/loadtests.sh
    ```
 5. Analyze the results and compare the performance of both libraries.
+6. cleanup
+   ```shell
+   docker stop js-puppeteer js-wkhtmltopdf php-dompdf
+   docker rm js-puppeteer js-wkhtmltopdf php-dompdf
+   rm docker_stats.txt
+   ```
 
 ## Contributing
 If you have suggestions, improvements, or other contributions, feel free to submit a pull request or open an issue.
